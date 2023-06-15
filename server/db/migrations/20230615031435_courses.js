@@ -6,7 +6,6 @@ exports.up = function (knex) {
     table.integer('slope')
     table.integer('par')
     table.string('par_per_hole')
-    table.timestamp('created_at').defaultTo(knex.fn.now())
   })
 }
 
