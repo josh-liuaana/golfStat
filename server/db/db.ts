@@ -20,3 +20,11 @@ export async function getAllRounds() {
   })
   return rounds
 }
+
+export async function getAllGolfers() {
+  return await db('golfers').select(
+    'id',
+    'name',
+    'handicap_index as handicapIdx'
+  )
+}
