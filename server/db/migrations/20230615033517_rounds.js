@@ -6,7 +6,7 @@ exports.up = function (knex) {
     table.text('putts')
     table.text('gir')
     table.text('fir')
-    table.text('score')
+    table.text('gross')
     table.timestamp('created_at').defaultTo(knex.fn.now())
   })
 }
