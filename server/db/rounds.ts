@@ -30,3 +30,32 @@ export async function getAllRounds() {
 
   return data
 }
+export async function getRoundById(id: number) {
+  const data = await db('rounds')
+    .join('golfers', 'golfers.id', 'golfer_id')
+    .join('courses', 'courses.id', 'course_id')
+    .select(
+      'rounds.id as id',
+      'rounds.course_id as courseId',
+      'courses.name as courseName',
+      'rounds.golfer_id as golferId',
+      'golfers.name as golferName',
+      'putts',
+      'gir',
+      'fir',
+      'gross',
+      'created_at as createdAt',
+      'courses.par_per_hole as parPerHole',
+      'par'
+    )
+    .where('rounds.id', id)
+    .first()
+
+  data.putts = stringToNumArr(data.putts)
+  data.gir = stringToBoolArr(data.gir)
+  data.fir = stringToBoolArr(data.fir)
+  data.gross = stringToNumArr(data.gross)
+  data.parPerHole = stringToNumArr(data.parPerHole)
+
+  return data
+}

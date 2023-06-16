@@ -13,4 +13,15 @@ router.get('/', async (req, res) => {
   }
 })
 
+router.get('/:id', async (req, res) => {
+  const id = Number(req.params.id)
+  try {
+    const round = await rounds.getRoundById(id)
+    res.json(round)
+  } catch (err) {
+    console.error('Route error', err)
+    res.sendStatus(500)
+  }
+})
+
 export default router
