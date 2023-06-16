@@ -3,6 +3,7 @@ export interface FERound {
   courseId: number
   courseName: string
   golferId: string
+  golferName: string
   putts: number[]
   gir: boolean[]
   fir: boolean[]
