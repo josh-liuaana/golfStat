@@ -16,3 +16,4 @@ export interface FERound {
 export type Action =
   | { type: 'ERROR'; payload: string }
   | { type: 'SET_ROUNDS'; payload: FERound[] }
+  | { type: 'SET_SINGLE_ROUND'; payload: FERound }
