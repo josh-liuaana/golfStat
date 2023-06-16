@@ -1,7 +1,12 @@
+import { Outlet } from "react-router-dom"
+
 function App() {
   
   return (
-    <><p>App Component</p></>
+    <>
+      <p>App Component</p>
+      <Outlet />
+    </>
   )
 }
 
