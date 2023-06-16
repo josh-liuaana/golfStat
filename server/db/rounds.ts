@@ -10,6 +10,7 @@ export async function getAllRounds() {
       'rounds.course_id as courseId',
       'courses.name as courseName',
       'rounds.golfer_id as golferId',
+      'golfers.name as golferName',
       'putts',
       'gir',
       'fir',
