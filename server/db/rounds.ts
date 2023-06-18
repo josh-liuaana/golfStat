@@ -1,5 +1,6 @@
 import db from './connection'
 import { stringToBoolArr, stringToNumArr } from '../../models/data-conversion'
+import { BERound } from '../../models/types'
 
 export async function getAllRounds() {
   const data = await db('rounds')
@@ -30,6 +31,7 @@ export async function getAllRounds() {
 
   return data
 }
+
 export async function getRoundById(id: number) {
   const data = await db('rounds')
     .join('golfers', 'golfers.id', 'golfer_id')
@@ -58,4 +60,8 @@ export async function getRoundById(id: number) {
   data.parPerHole = stringToNumArr(data.parPerHole)
 
   return data
+}
+
+export function addRound(round: BERound) {
+  return db('rounds').insert(round)
 }

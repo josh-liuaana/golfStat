@@ -13,6 +13,15 @@ export interface FERound {
   par: number
 }
 
+export interface BERound {
+  course_id: number
+  golfer_id: string
+  putts: string
+  gir: string
+  fir: string
+  gross: string
+}
+
 export type Action =
   | { type: 'ERROR'; payload: string }
   | { type: 'SET_ROUNDS'; payload: FERound[] }
