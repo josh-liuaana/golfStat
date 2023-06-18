@@ -3,12 +3,14 @@ import { createBrowserRouter, createRoutesFromElements, Route } from "react-rout
 import App from "./components/App";
 import Home from "./components/Home";
 import Rounds from "./components/Rounds";
+import Round from "./components/Round";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<App />}>
       <Route index element={<Home />} />
       <Route path="/rounds" element={<Rounds />} />
+      <Route path="/round/:id" element={<Round />} />
     </Route>
   )
 )

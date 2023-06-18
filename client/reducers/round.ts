@@ -1,7 +1,7 @@
 import * as roundAction from '../actions/rounds'
 import { Action, FERound } from '../../models/types'
 
-const initialState = [] as FERound[]
+const initialState = {} as FERound
 
 export default function roundReducer(state = initialState, action: Action) {
   const { type, payload } = action
