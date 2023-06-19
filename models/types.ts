@@ -22,7 +22,20 @@ export interface BERound {
   gross: string
 }
 
+export interface FECourse {
+  id: number
+  name: string
+  distance: number
+  slope: number
+  par: 66
+  parPerHole: number[]
+}
+
 export type Action =
   | { type: 'ERROR'; payload: string }
   | { type: 'SET_ROUNDS'; payload: FERound[] }
   | { type: 'SET_SINGLE_ROUND'; payload: FERound }
+
+export type CoursesAction =
+  | { type: 'ERROR'; payload: string }
+  | { type: 'SET_COURSES'; payload: FECourse[] }
