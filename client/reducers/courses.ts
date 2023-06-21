@@ -12,7 +12,8 @@ export default function coursesReducer(
 
   switch (type) {
     case courseAction.SET_COURSES:
-      return payload
+      payload.sort((a, b) => a.name.localeCompare(b.name))
+      return [...payload]
     default:
       return state
   }
