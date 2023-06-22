@@ -1,4 +1,4 @@
-import { FormEvent, useEffect, useState } from 'react'
+import { FormEvent, useEffect, useState, useMemo } from 'react'
 import { useAppSelector, useAppDispatch } from '../hooks/redux'
 import Select, { SingleValue } from 'react-select'
 import {
@@ -16,13 +16,13 @@ function AddRound() {
   const [selectedHoles, setSelectedHoles] = useState(0)
   const courses = useAppSelector((state) => state.courses) as CourseState
 
-  const options = [] as RoundSelectOptions[]
+  const options = useMemo(() => [] as RoundSelectOptions[], [])
   useEffect(() => {
     courses.all &&
       courses.all.map((course) => {
         options.push({ value: course.name, label: course.name, id: course.id })
       })
-  }, [options])
+  }, [options, courses.all])
 
   const handleCourse = (course: SingleValue<RoundSelectOptions>) => {
     if (!course) return null
