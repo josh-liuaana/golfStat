@@ -1,14 +1,25 @@
 import * as api from '../apis/courses'
-import { FECourse, CoursesAction } from '../../models/types'
+import { FECourse, CoursesAction, CurrentData } from '../../models/types'
 import { ThunkAction } from '../store'
 
 export const SET_COURSES = 'SET_COURSES'
+export const SET_CURRENT_COURSE = 'SET_CURRENT_COURSE'
 export const ERROR = 'ERROR'
 
 export function setCourses(courses: FECourse[]): CoursesAction {
   return {
     type: SET_COURSES,
     payload: courses,
+  }
+}
+
+export function setCurrentCourse(
+  course: FECourse,
+  holes: CurrentData
+): CoursesAction {
+  return {
+    type: SET_CURRENT_COURSE,
+    payload: { course: course, currentData: holes },
   }
 }
 

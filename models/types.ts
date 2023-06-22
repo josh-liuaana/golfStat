@@ -31,6 +31,34 @@ export interface FECourse {
   parPerHole: number[]
 }
 
+export interface RoundSelectOptions {
+  value: string
+  label: string
+  id: number
+}
+
+export interface HoleSelectOptions {
+  value: number
+  label: number
+}
+
+export interface CourseState {
+  current: CurrentCourseState
+  all: FECourse[]
+}
+
+export interface CurrentCourseState {
+  course: FECourse
+  currentData: CurrentData
+}
+
+export interface CurrentData {
+  putts: number[]
+  gir: boolean[]
+  fir: boolean[]
+  gross: number[]
+}
+
 export type Action =
   | { type: 'ERROR'; payload: string }
   | { type: 'SET_ROUNDS'; payload: FERound[] }
@@ -39,3 +67,4 @@ export type Action =
 export type CoursesAction =
   | { type: 'ERROR'; payload: string }
   | { type: 'SET_COURSES'; payload: FECourse[] }
+  | { type: 'SET_CURRENT_COURSE'; payload: CurrentCourseState }

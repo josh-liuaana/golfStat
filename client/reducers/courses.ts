@@ -1,8 +1,12 @@
-// TODO import course actions
 import * as courseAction from '../actions/courses'
-import { Action, CoursesAction, FECourse } from '../../models/types'
+import { CoursesAction, FECourse } from '../../models/types'
 
-const initialState = [] as FECourse[]
+interface CurrentCourse {
+  current: FECourse
+  all: FECourse[]
+}
+
+const initialState = {} as CurrentCourse
 
 export default function coursesReducer(
   state = initialState,
@@ -13,7 +17,14 @@ export default function coursesReducer(
   switch (type) {
     case courseAction.SET_COURSES:
       payload.sort((a, b) => a.name.localeCompare(b.name))
-      return [...payload]
+      return { current: { ...state.current }, all: [...payload] }
+
+    case courseAction.SET_CURRENT_COURSE:
+      return {
+        current: { course: payload.course, currentData: payload.currentData },
+        all: [...state.all],
+      }
+
     default:
       return state
   }
