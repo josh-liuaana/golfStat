@@ -25,6 +25,12 @@ export default function coursesReducer(
         all: [...state.all],
       }
 
+    case courseAction.SET_SCORE:
+      return {
+        current: { course: state.all, currentData: payload },
+        all: [...state.all],
+      }
+
     default:
       return state
   }

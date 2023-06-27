@@ -68,3 +68,4 @@ export type CoursesAction =
   | { type: 'ERROR'; payload: string }
   | { type: 'SET_COURSES'; payload: FECourse[] }
   | { type: 'SET_CURRENT_COURSE'; payload: CurrentCourseState }
+  | { type: 'SET_SCORE'; payload: CurrentData }
