@@ -77,13 +77,13 @@ function CurrentRound() {
 
   return (
     <>
-      <p>YOU ARE PLAYING AT {courses.current.course.name}</p>
-      <p>COURSE ID - {courses.current.course.id}</p>
-      <p>YOU ARE PLAYING {holeLength} HOLES</p>
+      <p>
+        {courses.current.course.name} - {holeLength} hole round
+      </p>
       <button onClick={() => handleClick(-1)} disabled={previousDisabled}>
         Previous Hole
       </button>
-      <p>Current hole: {currentHole}</p>
+      <p>Hole: {currentHole}</p>
       <p>Par: {courses.current.course.parPerHole[currentHole - 1]}</p>
       <button onClick={() => handleClick(1)} disabled={nextDisabled}>
         Next Hole
