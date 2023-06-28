@@ -27,7 +27,7 @@ export default function coursesReducer(
 
     case courseAction.SET_SCORE:
       return {
-        current: { course: state.all, currentData: payload },
+        current: { course: payload.courseId, currentData: payload.score },
         all: [...state.all],
       }
 

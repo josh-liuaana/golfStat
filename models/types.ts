@@ -59,6 +59,11 @@ export interface CurrentData {
   gross: number[]
 }
 
+export interface RawCurrentData extends CurrentData {
+  courseId: number
+  golferId: string
+}
+
 export type Action =
   | { type: 'ERROR'; payload: string }
   | { type: 'SET_ROUNDS'; payload: FERound[] }
@@ -68,4 +73,4 @@ export type CoursesAction =
   | { type: 'ERROR'; payload: string }
   | { type: 'SET_COURSES'; payload: FECourse[] }
   | { type: 'SET_CURRENT_COURSE'; payload: CurrentCourseState }
-  | { type: 'SET_SCORE'; payload: CurrentData }
+  | { type: 'SET_SCORE'; payload: { courseId: FECourse; score: CurrentData } }

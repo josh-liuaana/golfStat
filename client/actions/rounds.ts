@@ -1,5 +1,5 @@
 import * as api from '../apis/rounds'
-import { FERound, Action } from '../../models/types'
+import { FERound, Action, RawCurrentData } from '../../models/types'
 import { ThunkAction } from '../store'
 
 export const SET_ROUNDS = 'SET_ROUNDS'
@@ -44,6 +44,18 @@ export function getSingleRound(id: number): ThunkAction {
     try {
       const round = await api.fetchSingleRound(id)
       dispatch(setSingleRound(round))
+    } catch (err) {
+      console.error('Action error', err)
+      dispatch(error(String(err)))
+    }
+  }
+}
+
+export function addRound(currentRoundData: RawCurrentData): ThunkAction {
+  return async (dispatch) => {
+    try {
+      const newRound = await api.postRound(currentRoundData) // create api route
+      dispatch(setSingleRound(newRound))
     } catch (err) {
       console.error('Action error', err)
       dispatch(error(String(err)))

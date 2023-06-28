@@ -14,10 +14,13 @@ export function setCourses(courses: FECourse[]): CoursesAction {
   }
 }
 
-export function setScore(score: CurrentData): CoursesAction {
+export function setScore(
+  courseId: FECourse,
+  score: CurrentData
+): CoursesAction {
   return {
     type: SET_SCORE,
-    payload: score,
+    payload: { courseId, score },
   }
 }
 
