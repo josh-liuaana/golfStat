@@ -36,7 +36,7 @@
 .top-buttons-container {
   display: flex;
   justify-content: space-between;
-  width: 80vw;
+  width: 90vw;
 }
 
 .stat-buttons {
@@ -46,7 +46,21 @@
 }
 
 .new-round-button {
-  width: 80vw;
+  width: 90vw;
   font-size: 40px;
   padding: 35px 40px;
+}
+
+.course-dropdown {
+  width: 75vw;
+  margin-top: 5px;
+  margin-bottom: 10px;
+}
+
+.course-submit-button {
+  margin-top: 10px;
+  width: 100%;
+  border: none;
+  padding: 15px;
+  box-shadow: 4px 4px 7px grey;
 }
