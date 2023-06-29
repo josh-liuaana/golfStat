@@ -14,6 +14,12 @@ function Home() {
       {showRoundSelection ? (
         <>
           <AddRound />
+          <button
+            className="course-form-button back-button"
+            onClick={() => setShowRoundSelection(false)}
+          >
+            Cancel
+          </button>
         </>
       ) : (
         <div className="button-container">

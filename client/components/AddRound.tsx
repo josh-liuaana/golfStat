@@ -77,7 +77,11 @@ function AddRound() {
           ]}
           onChange={(holes) => HandleHoles(holes)}
         />
-        <input type="submit" value="Tee off" className="course-submit-button" />
+        <input
+          type="submit"
+          value="Tee off"
+          className="course-form-button course-submit-button"
+        />
       </form>
     </>
   )

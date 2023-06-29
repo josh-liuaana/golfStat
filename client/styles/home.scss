@@ -57,10 +57,19 @@
   margin-bottom: 10px;
 }
 
-.course-submit-button {
-  margin-top: 10px;
-  width: 100%;
+.course-form-button {
   border: none;
   padding: 15px;
   box-shadow: 4px 4px 7px grey;
+}
+
+.course-submit-button {
+  margin-top: 10px;
+  width: 100%;
+  color: green;
+}
+
+.back-button {
+  width: 75vw;
+  color: red;
 }
