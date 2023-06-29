@@ -1,18 +1,18 @@
 import { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 
 import AddRound from './AddRound'
 
 function Home() {
   const [showRoundSelection, setShowRoundSelection] = useState(false)
+  const navigate = useNavigate()
+
   return (
     <div className="home-container">
       <h1>Josh Liua&apos;ana</h1>
       <img src="../../images/golf.png" alt="gS logo" />
       {showRoundSelection ? (
         <>
-          <button onClick={() => setShowRoundSelection(!showRoundSelection)}>
-            Go back
-          </button>
           <AddRound />
         </>
       ) : (
@@ -20,7 +20,7 @@ function Home() {
           <div className="top-buttons-container">
             <button
               className="home-buttons stat-buttons"
-              onClick={() => alert('navigate to round history page')}
+              onClick={() => navigate('/rounds')}
             >
               Playing History
             </button>
