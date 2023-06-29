@@ -1,0 +1,52 @@
+.home-container {
+  font-family: 'Inter', sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 92vh;
+  justify-content: space-evenly;
+}
+
+.home-container img{
+  max-width: 100%;
+}
+
+.home-container h1 {
+  text-align: center;
+}
+
+.home-buttons {
+  background-color: #d9d9d9;
+  border: none;
+  text-align: center;
+  text-decoration: none;
+  border-radius: 10px;
+  box-shadow: 7px 7px 15px grey;
+}
+
+.button-container {
+  height: 300px;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.top-buttons-container {
+  display: flex;
+  justify-content: space-between;
+  width: 80vw;
+}
+
+.stat-buttons {
+  width: 47%;
+  padding: 35px 20px;
+  font-size: 20px;
+}
+
+.new-round-button {
+  width: 80vw;
+  font-size: 40px;
+  padding: 35px 40px;
+}
