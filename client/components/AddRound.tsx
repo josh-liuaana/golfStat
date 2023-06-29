@@ -51,11 +51,13 @@ function AddRound() {
 
   return (
     <>
-      <p>AddRound Component</p>
       <form onSubmit={handleSubmit}>
         <label htmlFor="course">New Round</label>
         <Select
           id="course"
+          className="course-dropdown"
+          menuPlacement="top"
+          placeholder="Augusta National..."
           required={true}
           options={options}
           isSearchable={true}
@@ -65,6 +67,9 @@ function AddRound() {
         <label htmlFor="holes">Holes played:</label>
         <Select
           id="holes"
+          className="course-dropdown"
+          menuPlacement="top"
+          placeholder=" 9 or 18 "
           required={true}
           options={[
             { value: 9, label: 9 },
@@ -72,7 +77,7 @@ function AddRound() {
           ]}
           onChange={(holes) => HandleHoles(holes)}
         />
-        <input type="submit" value="Choose course" />
+        <input type="submit" value="Tee off" className="course-submit-button" />
       </form>
     </>
   )
