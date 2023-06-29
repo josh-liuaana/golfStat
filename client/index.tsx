@@ -5,6 +5,8 @@ import { RouterProvider } from 'react-router-dom'
 import store from './store'
 import router from './router'
 
+import './styles/index.scss'
+
 document.addEventListener('DOMContentLoaded', () => {
   createRoot(document.getElementById('app') as HTMLElement).render(
     <Provider store={store}>
