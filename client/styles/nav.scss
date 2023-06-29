@@ -1,0 +1,15 @@
+.nav-container {
+  max-height: 75px;
+  align-items: center;
+  justify-content: space-between;
+  display: flex;
+  background-color: black;
+  color: white;
+  font-family: 'Inter', sans-serif;
+}
+
+.nav-container img {
+  margin: 10px;
+  max-height: 60px;
+  max-width: 60px;
+}
