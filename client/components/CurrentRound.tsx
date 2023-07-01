@@ -44,11 +44,6 @@ function CurrentRound() {
         (total, putts) => total + putts
       ) /
       (currentHole - 1)
-    console.log(
-      putts,
-      courses.current.currentData.putts.reduce((total, putts) => total + putts),
-      currentHole - 1
-    )
 
     if (currentPar.length > 0) {
       setCurrentScore(
