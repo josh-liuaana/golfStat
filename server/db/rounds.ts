@@ -20,6 +20,7 @@ export async function getAllRounds() {
       'courses.par_per_hole as parPerHole',
       'par'
     )
+    .orderBy('createdAt', 'desc')
 
   data.map((round) => {
     round.putts = stringToNumArr(round.putts)
@@ -63,5 +64,16 @@ export async function getRoundById(id: number) {
 }
 
 export function addRound(round: BERound) {
-  return db('rounds').insert(round)
+  return db('rounds')
+    .insert(round)
+    .returning([
+      'id',
+      'course_id as courseId',
+      'golfer_id as golferId',
+      'putts',
+      'gross',
+      'fir',
+      'gir',
+      'created_at as createdAt',
+    ])
 }
