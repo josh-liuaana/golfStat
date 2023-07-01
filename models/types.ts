@@ -1,16 +1,19 @@
-export interface FERound {
-  id: number
-  courseId: number
+export interface FERound extends Round {
   courseName: string
   golferId: string
   golferName: string
+  parPerHole: number[]
+  par: number
+}
+
+export interface Round {
+  id: number
+  courseId: number
   putts: number[]
   gir: boolean[]
   fir: boolean[]
   gross: number[]
   createdAt: string
-  parPerHole: number[]
-  par: number
 }
 
 export interface BERound {
