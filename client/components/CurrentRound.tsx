@@ -1,21 +1,27 @@
 import { useState, useEffect, ChangeEvent, FormEvent } from 'react'
+import { FaArrowRight, FaArrowLeft } from 'react-icons/fa'
+import { useNavigate } from 'react-router-dom'
+
 import { CourseState, CurrentData } from '../../models/types'
 import { useAppSelector, useAppDispatch } from '../hooks/redux'
 import { setScore } from '../actions/courses'
 import { addRound } from '../actions/rounds'
-import { FaArrowRight, FaArrowLeft } from 'react-icons/fa'
 
 // TODO Figure out checkbox bug
 // TODO Putt and gross is required field
-// * Will it require additional function? cant un-check
+// TODO Running totals\\
 
 function CurrentRound() {
   const dispatch = useAppDispatch()
+  const navigate = useNavigate()
   const courses = useAppSelector((state) => state.courses) as CourseState
   const [currentHole, setCurrentHole] = useState(1)
   const [previousDisabled, setPreviousDisabled] = useState(false)
   const [nextDisabled, setNextDisabled] = useState(false)
   const [currentData, setCurrentData] = useState({} as CurrentData)
+  const [currentGross, setCurrentGross] = useState(0)
+  const [currentScore, setCurrentScore] = useState(0)
+  const [currentPutts, setCurrentPutts] = useState(0)
 
   const holeLength = courses.current.currentData.gross.length
 
@@ -26,7 +32,33 @@ function CurrentRound() {
 
   useEffect(() => {
     setCurrentData(courses.current.currentData)
-  }, [courses])
+    setCurrentGross(
+      courses.current.currentData.gross.reduce((total, gross) => total + gross)
+    )
+    const currentPar = courses.current.course.parPerHole.slice(
+      0,
+      currentHole - 1
+    )
+    const putts =
+      courses.current.currentData.putts.reduce(
+        (total, putts) => total + putts
+      ) /
+      (currentHole - 1)
+    console.log(
+      putts,
+      courses.current.currentData.putts.reduce((total, putts) => total + putts),
+      currentHole - 1
+    )
+
+    if (currentPar.length > 0) {
+      setCurrentScore(
+        courses.current.currentData.gross.reduce(
+          (total, gross) => total + gross
+        ) - currentPar.reduce((total, gross) => total + gross)
+      )
+      setCurrentPutts(Number(putts.toFixed(1)))
+    }
+  }, [courses, currentHole])
 
   useEffect(() => {
     if (currentHole === 1) {
@@ -66,15 +98,16 @@ function CurrentRound() {
     })
   }
 
-  const handleSubmit = (evt: FormEvent) => {
+  const handleSubmit = async (evt: FormEvent) => {
     evt.preventDefault()
-    dispatch(
+    await dispatch(
       addRound({
         ...currentData,
         courseId: courses.current.course.id,
         golferId: '7fe67614-2735-4b0c-8de5-f8cf3c303397',
       })
     )
+    navigate(`/rounds`)
   }
 
   return (
@@ -83,9 +116,12 @@ function CurrentRound() {
         <p>
           {courses.current.course.name} ({holeLength})
         </p>
-        <p>Gross: -</p>
-        <p>Score: -</p>
-        <p>Putt avg:</p>
+        <p>Gross: {currentGross}</p>
+        <p>
+          Score: {currentScore > 0 && '+'}
+          {currentScore}
+        </p>
+        <p>Putt avg: {currentPutts}</p>
       </div>
 
       <form onSubmit={handleSubmit}>
@@ -102,7 +138,7 @@ function CurrentRound() {
                 courses.current.course.parPerHole[currentHole - 1] === 3
               }
               onChange={handleBoolChange}
-              checked={courses.current.currentData.fir[currentHole - 1]} // true/false
+              checked={courses.current.currentData.fir[currentHole - 1]}
             />
           </div>
 
@@ -121,15 +157,14 @@ function CurrentRound() {
         </div>
 
         <div className="hole-navigation">
-          {/* {!previousDisabled && ( */}
           <button
             className="hole-nav-buttons"
             onClick={() => handleClick(-1)}
             disabled={previousDisabled}
+            type="button"
           >
             <FaArrowLeft />
           </button>
-          {/* )} */}
           <div className="hole-information">
             <h2>Hole: {currentHole}</h2>
             <h3>Par: {courses.current.course.parPerHole[currentHole - 1]}</h3>
@@ -138,10 +173,10 @@ function CurrentRound() {
             className="hole-nav-buttons"
             onClick={() => handleClick(1)}
             disabled={nextDisabled}
+            type="button"
           >
             <FaArrowRight />
           </button>
-          {/* {!nextDisabled && <FaArrowRight onClick={() => handleClick(1)} />} */}
         </div>
 
         <div className="form-number-inputs">
