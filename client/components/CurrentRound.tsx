@@ -7,9 +7,10 @@ import { useAppSelector, useAppDispatch } from '../hooks/redux'
 import { setScore } from '../actions/courses'
 import { addRound } from '../actions/rounds'
 
-// TODO Figure out checkbox bug
+// TODO Figure out checkbox bug - will probs need a function to toggle
 // TODO Putt and gross is required field
-// TODO Running totals\\
+// TODO Running totals - adjust score so it doesnt do per hole but based on score
+// will probably need to splice to where a zero is
 
 function CurrentRound() {
   const dispatch = useAppDispatch()
@@ -26,6 +27,13 @@ function CurrentRound() {
   const holeLength = courses.current.currentData.gross.length
 
   const handleClick = (input: number) => {
+    if (
+      currentData.gross[currentHole - 1] === 0 ||
+      currentData.putts[currentHole - 1] === 0
+    ) {
+      alert('Gross and putt cant be zero')
+      return null
+    }
     setCurrentHole(currentHole + input)
     dispatch(setScore(courses.current.course, currentData))
   }
