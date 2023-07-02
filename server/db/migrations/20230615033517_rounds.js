@@ -7,7 +7,9 @@ exports.up = function (knex) {
     table.text('gir')
     table.text('fir')
     table.text('gross')
-    table.timestamp('created_at').defaultTo(knex.fn.now())
+    table
+      .timestamp('created_at')
+      .defaultTo(new Date().toLocaleDateString('en-NZ'))
   })
 }
 
