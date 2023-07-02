@@ -1,0 +1,38 @@
+.single-round-container {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  align-items: center;
+}
+
+.round-title-block {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  font-size: 1.3em;
+}
+
+.round-title-block h1 {
+  margin: 0px;
+}
+
+.round-title-block p {
+  margin: 0px;
+}
+
+.round-stats {
+  font-size: 1.3em;
+}
+
+.round-stat-cat {
+  margin-right: 5px
+}
+
+.round-stat-cat-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.round-stat-value {
+  color: rgb(145, 145, 145);
+}
