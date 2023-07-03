@@ -32,7 +32,7 @@ function Home() {
             </button>
             <button
               className="home-buttons stat-buttons"
-              onClick={() => alert('navigate to statistics page')}
+              onClick={() => navigate('/statistics')}
             >
               Statistics
             </button>

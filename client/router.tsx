@@ -9,6 +9,7 @@ import Home from './components/Home'
 import Rounds from './components/Rounds'
 import Round from './components/Round'
 import CurrentRound from './components/CurrentRound'
+import Statistics from './components/Statistics'
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -17,6 +18,7 @@ const router = createBrowserRouter(
       <Route path="/rounds" element={<Rounds />} />
       <Route path="/round/:id" element={<Round />} />
       <Route path="/current" element={<CurrentRound />} />
+      <Route path="/statistics" element={<Statistics />} />
     </Route>
   )
 )
