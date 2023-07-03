@@ -11,7 +11,7 @@ function Nav() {
         aria-hidden="true"
       />
       <h1>golfStat</h1>
-      <button onClick={() => alert('functionality to come')}>logout</button>
+      <button disabled={true}>logout</button>
     </div>
   )
 }

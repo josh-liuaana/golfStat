@@ -162,10 +162,7 @@ function Statistics() {
       </div>
 
       <div>
-        <button
-          className="graph-button"
-          onClick={() => alert('redirect to graph data page')}
-        >
+        <button className="graph-button" disabled={true}>
           Graphs
         </button>
       </div>
