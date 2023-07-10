@@ -4,6 +4,7 @@ export interface FERound extends Round {
   golferName: string
   parPerHole: number[]
   par: number
+  slope: number
 }
 
 export interface Round {
