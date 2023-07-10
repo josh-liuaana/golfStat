@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import { useAppSelector } from '../hooks/redux'
 import { FERound } from '../../models/types'
 import * as dataFuncs from '../../models/statistics'
@@ -16,6 +17,7 @@ interface Data extends PerParData {
 }
 
 function Statistics() {
+  const navigate = useNavigate()
   const allRounds = useAppSelector((state) => state.rounds) as FERound[]
 
   const [data, setData] = useState({} as Data)
@@ -162,7 +164,21 @@ function Statistics() {
       </div>
 
       <div>
-        <button className="graph-button" disabled={true}>
+        <button
+          onClick={() =>
+            navigate('/chart', {
+              replace: false,
+              state: {
+                allRounds,
+                data,
+                parThreeData,
+                parFourData,
+                parFiveData,
+              },
+            })
+          }
+          className="graph-button"
+        >
           Graphs
         </button>
       </div>

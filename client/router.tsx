@@ -10,6 +10,7 @@ import Rounds from './components/Rounds'
 import Round from './components/Round'
 import CurrentRound from './components/CurrentRound'
 import Statistics from './components/Statistics'
+import Charts from './components/Charts'
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -19,6 +20,7 @@ const router = createBrowserRouter(
       <Route path="/round/:id" element={<Round />} />
       <Route path="/current" element={<CurrentRound />} />
       <Route path="/statistics" element={<Statistics />} />
+      <Route path="/chart" element={<Charts />} />
     </Route>
   )
 )
