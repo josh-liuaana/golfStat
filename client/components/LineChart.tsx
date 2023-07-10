@@ -112,8 +112,8 @@ function LineChart() {
       {
         label: 'Fairways in reg',
         data: regArr.moddedFirArr,
-        borderColor: 'rgba(10, 10, 180, 0.8',
-        backgroundColor: 'rgba(10, 10, 180, 0.8',
+        borderColor: 'rgba(10, 10, 180, 0.8)',
+        backgroundColor: 'rgba(10, 10, 180, 0.8)',
         yAxisID: 'y',
         borderWidth: 1.5,
         tension: 0.1,
