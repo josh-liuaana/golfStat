@@ -68,6 +68,14 @@ export interface RawCurrentData extends CurrentData {
   golferId: string
 }
 
+export interface PerParData {
+  totalPutts: number
+  totalHoles: number
+  totalFairways: number
+  totalGreens: number
+  toPar: number
+}
+
 export type Action =
   | { type: 'ERROR'; payload: string }
   | { type: 'SET_ROUNDS'; payload: FERound[] }
