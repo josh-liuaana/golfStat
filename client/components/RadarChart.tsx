@@ -22,15 +22,12 @@ ChartJS.register(
 
 function RadarChart() {
   const { state } = useLocation()
-  console.log(state)
 
   const parData = indexFuncs.perParIndex(
     state.parThreeData,
     state.parFourData,
     state.parFiveData
   )
-
-  console.log(parData)
 
   const data = {
     labels: ['GIR', 'FIR', 'Putts', 'To par'],

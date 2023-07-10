@@ -54,7 +54,6 @@ export function regIndexPerRound(regArr: FERound[]) {
     // calculate gir
     const gir =
       round.gir.filter((gir) => gir === true).length / round.gir.length
-    // console.log('\nRaw GIR', { gir })
 
     // calculate fir
     const fairwayHoles = round.fir.filter((fir) => fir === true).length
@@ -122,7 +121,5 @@ export function perParIndex(
     100 - ((5 + par5Data.toPar - pga5) / (bad5Avg - pga5)) * 100,
   ]
 
-  console.log(par3Data, par4Data, par5Data)
-  console.log(moddedParFiveData)
   return { moddedParFiveData, moddedParFourData, moddedParThreeData }
 }
