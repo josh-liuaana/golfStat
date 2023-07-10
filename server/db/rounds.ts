@@ -18,7 +18,8 @@ export async function getAllRounds() {
       'gross',
       'created_at as createdAt',
       'courses.par_per_hole as parPerHole',
-      'par'
+      'par',
+      'courses.slope'
     )
     .orderBy('createdAt', 'desc')
 
