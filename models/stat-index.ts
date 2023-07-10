@@ -1,14 +1,4 @@
-import { FERound } from './types'
-
-interface RoundArr {
-  putts: number[]
-  gir: boolean[]
-  fir: boolean[]
-  gross: number[]
-  slope: number
-  distance: number
-  parPerHole: number[]
-}
+import { FERound, PerParData } from './types'
 
 const minSlope = 55
 const maxSlope = 155
@@ -18,9 +8,9 @@ const hardSlopeRange = maxSlope - avgSlope
 
 const pgaPutts = 1.5
 const badPuttAvg = 3
+const puttRange = badPuttAvg - pgaPutts
 
 export function puttIndexPerRound(puttArr: FERound[]) {
-  const puttRange = badPuttAvg - pgaPutts
   const moddedPuttArr = [] as number[]
 
   puttArr.map((round) => {
@@ -53,11 +43,10 @@ const pgaGir = 0.75
 const pgaFir = 0.715
 const badGir = 0.17
 const badFir = 0.2
+const greenRange = pgaGir - badGir
+const fairwayRange = pgaFir - badFir
 
-export function regIndexPerRound(regArr: RoundArr[]) {
-  const greenRange = pgaGir - badGir
-  const fairwayRange = pgaFir - badFir
-
+export function regIndexPerRound(regArr: FERound[]) {
   const moddedGirArr = [] as number[]
   const moddedFirArr = [] as number[]
 
@@ -96,4 +85,44 @@ export function regIndexPerRound(regArr: RoundArr[]) {
     moddedFirArr.push(firPercentile)
   })
   return { moddedFirArr, moddedGirArr }
+}
+
+const pga5 = 4.41
+const bad5Avg = 8
+const pga4 = 3.89
+const bad4Avg = 7
+const pga3 = 2.93
+const bad3Avg = 6
+
+export function perParIndex(
+  par3Data: PerParData,
+  par4Data: PerParData,
+  par5Data: PerParData
+) {
+  const moddedParThreeData = [
+    ((par3Data.totalGreens / par3Data.totalHoles - badGir) / greenRange) * 100,
+    0,
+    ((par3Data.totalPutts / par3Data.totalHoles - pgaPutts) / puttRange) * 100,
+    100 - ((3 + par3Data.toPar - pga3) / (bad3Avg - pga3)) * 100,
+  ]
+
+  const moddedParFourData = [
+    ((par4Data.totalGreens / par4Data.totalHoles - badGir) / greenRange) * 100,
+    ((par4Data.totalFairways / par4Data.totalHoles - badFir) / fairwayRange) *
+      100,
+    ((par4Data.totalPutts / par4Data.totalHoles - pgaPutts) / puttRange) * 100,
+    100 - ((4 + par4Data.toPar - pga4) / (bad4Avg - pga4)) * 100,
+  ]
+
+  const moddedParFiveData = [
+    ((par5Data.totalGreens / par5Data.totalHoles - badGir) / greenRange) * 100,
+    ((par5Data.totalFairways / par5Data.totalHoles - badFir) / fairwayRange) *
+      100,
+    ((par5Data.totalPutts / par5Data.totalHoles - pgaPutts) / puttRange) * 100,
+    100 - ((5 + par5Data.toPar - pga5) / (bad5Avg - pga5)) * 100,
+  ]
+
+  console.log(par3Data, par4Data, par5Data)
+  console.log(moddedParFiveData)
+  return { moddedParFiveData, moddedParFourData, moddedParThreeData }
 }

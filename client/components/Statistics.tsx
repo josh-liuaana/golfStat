@@ -1,16 +1,8 @@
 import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useAppSelector } from '../hooks/redux'
-import { FERound } from '../../models/types'
+import { FERound, PerParData } from '../../models/types'
 import * as dataFuncs from '../../models/statistics'
-
-interface PerParData {
-  totalPutts: number
-  totalHoles: number
-  totalFairways: number
-  totalGreens: number
-  toPar: number
-}
 
 interface Data extends PerParData {
   totalParFourFive: number
