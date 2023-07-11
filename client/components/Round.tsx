@@ -30,11 +30,7 @@ function Round() {
         <span className="round-stat-cat-container">
           <p className="round-stat-cat">Score:</p>
           <p className="round-stat-value">
-            {roundScore - round.par > 0
-              ? '+'
-              : roundScore - round.par < 0
-              ? '-'
-              : ''}
+            {roundScore - round.par > 0 && '+'}
             {roundScore - round.par}
           </p>
         </span>
