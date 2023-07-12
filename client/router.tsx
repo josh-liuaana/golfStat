@@ -11,6 +11,7 @@ import Round from './components/Round'
 import CurrentRound from './components/CurrentRound'
 import Statistics from './components/Statistics'
 import Charts from './components/Charts'
+import PostRound from './components/PostRound'
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -21,6 +22,7 @@ const router = createBrowserRouter(
       <Route path="/current" element={<CurrentRound />} />
       <Route path="/statistics" element={<Statistics />} />
       <Route path="/chart" element={<Charts />} />
+      <Route path="/post-round" element={<PostRound />} />
     </Route>
   )
 )
