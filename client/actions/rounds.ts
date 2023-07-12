@@ -54,8 +54,8 @@ export function getSingleRound(id: number): ThunkAction {
 export function addRound(currentRoundData: RawCurrentData): ThunkAction {
   return async (dispatch) => {
     try {
-      const newRound = await api.postRound(currentRoundData)
-      dispatch(setSingleRound(newRound))
+      await api.postRound(currentRoundData)
+      dispatch(getRounds())
     } catch (err) {
       console.error('Action error', err)
       dispatch(error(String(err)))
