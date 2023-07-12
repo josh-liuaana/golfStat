@@ -33,6 +33,7 @@ router.post('/', async (req, res) => {
     gir: data.arrToString(req.body.gir),
     fir: data.arrToString(req.body.fir),
     gross: data.arrToString(req.body.gross),
+    created_at: new Date().toLocaleDateString('en-NZ'),
   }
   try {
     const result = await rounds.addRound(round)
