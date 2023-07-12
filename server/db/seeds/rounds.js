@@ -10,6 +10,7 @@ exports.seed = async function (knex) {
       gir: 'true,true,false,true,false,true,false,true,true,true,true,false,true,false,true,false,true,true',
       fir: 'true,true,false,false,false,false,false,false,false,true,true,false,false,true,true,false,true,false',
       gross: '3,4,3,4,3,4,5,5,4,3,4,5,5,6,6,5,5,6',
+      created_at: '01/07/2023',
     },
     {
       id: 2,
@@ -19,6 +20,7 @@ exports.seed = async function (knex) {
       gir: 'true,false,true,true,true,true,false,true,false,true,false,true,true,true,true,false,true,false',
       fir: 'true,true,false,false,true,false,false,true,false,true,false,false,false,true,true,false,true,false',
       gross: '5,4,5,3,6,3,6,6,5,3,4,3,4,5,4,3,4,5',
+      created_at: '05/07/2023',
     },
     {
       id: 3,
@@ -28,6 +30,7 @@ exports.seed = async function (knex) {
       gir: 'false,true,false,true,false,true,false,false,false,true,false,false,true,false,true,false,true,false',
       fir: 'true,true,false,false,true,false,false,true,false,true,false,false,false,false,true,false,true,false',
       gross: '6,5,4,5,5,6,4,6,4,5,3,6,5,3,6,6,6,5',
+      created_at: '10/07/2023',
     },
   ])
 }
