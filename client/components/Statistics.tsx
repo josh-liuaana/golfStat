@@ -13,6 +13,7 @@ function Statistics() {
   const allRounds = useAppSelector((state) => state.rounds) as FERound[]
 
   const [data, setData] = useState({} as Data)
+
   const [parThreeData, setParThreeData] = useState({} as PerParData)
   const [parFourData, setParFourData] = useState({} as PerParData)
   const [parFiveData, setParFiveData] = useState({} as PerParData)
@@ -25,6 +26,10 @@ function Statistics() {
     setParFourData(dataFuncs.perParStats(allRounds, 4))
     setParFiveData(dataFuncs.perParStats(allRounds, 5))
   }, [allRounds])
+
+  if (Object.keys(data).length === 0) {
+    return null
+  }
 
   return (
     <div className="statistics-container">
@@ -39,8 +44,8 @@ function Statistics() {
           <p>{(data.totalPutts / data.totalHoles).toFixed(1)}</p>
         </span>
         <span>
-          <p className="overall-cat">Avg Putts per round:</p>
-          <p>{(data.totalPutts / allRounds.length).toFixed(1)}</p>
+          <p className="overall-cat">Avg Putts per 18 holes:</p>
+          <p>{((data.totalPutts / data.totalHoles) * 18).toFixed(1)}</p>
         </span>
         <span>
           <p className="overall-cat">Fairways in regulation:</p>
@@ -57,10 +62,17 @@ function Statistics() {
           </p>
         </span>
         <span>
-          <p className="overall-cat"> Avg to par:</p>
+          <p className="overall-cat"> Avg to par (per hole):</p>
           <p>
             {data.toPar > 0 ? '+' : data.toPar < 0 ? '-' : ''}
-            {data.toPar}
+            {data && data.toPar.toFixed(2)}
+          </p>
+        </span>
+        <span>
+          <p className="overall-cat"> Avg to par (per 18):</p>
+          <p>
+            {data.toPar > 0 ? '+' : data.toPar < 0 ? '-' : ''}
+            {(data.toPar * 18).toFixed(1)}
           </p>
         </span>
       </div>

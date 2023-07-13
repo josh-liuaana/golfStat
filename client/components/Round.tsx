@@ -8,8 +8,12 @@ function Round() {
     return null
   }
 
+  const roundLength = round.gross.length
+  const adjustedParPerHole = round.parPerHole.slice(0, roundLength)
+  const adjustedPar = adjustedParPerHole.reduce((total, gross) => total + gross)
+
   const fairwaysHit = round.fir.filter((fairway) => fairway === true).length
-  const fairwayHoles = round.parPerHole.filter((hole) => hole > 3).length
+  const fairwayHoles = adjustedParPerHole.filter((hole) => hole > 3).length
   const greensHit = round.gir.filter((green) => green === true).length
   const totalPutts = round.putts.reduce((total, putts) => total + putts)
   const avgPutts = (totalPutts / round.putts.length).toFixed(1)
@@ -18,7 +22,9 @@ function Round() {
   return (
     <main className="single-round-container">
       <div className="round-title-block">
-        <h1>{round.courseName}</h1>
+        <h1>
+          {round.courseName} {roundLength === 9 && ' - (9)'}
+        </h1>
         <p>{round.createdAt}</p>
       </div>
       <div className="round-stats">
@@ -30,8 +36,8 @@ function Round() {
         <span className="round-stat-cat-container">
           <p className="round-stat-cat">Score:</p>
           <p className="round-stat-value">
-            {roundScore - round.par > 0 && '+'}
-            {roundScore - round.par}
+            {roundScore - adjustedPar > 0 && '+'}
+            {roundScore - adjustedPar}
           </p>
         </span>
 
