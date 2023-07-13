@@ -78,6 +78,7 @@ function LineChart() {
           display: true,
           text: 'statIndex ( % )',
         },
+        reverse: true,
         min: 0,
         suggestedMax: 100,
         position: 'left' as const,
@@ -109,41 +110,91 @@ function LineChart() {
         backgroundColor: 'rgba(175, 10, 10, 0.8)',
         yAxisID: 'y',
         borderWidth: 1.5,
-        tension: 0.1,
+        tension: 0.3,
+        hidden: true,
       },
       {
-        label: 'Green in reg',
+        label: 'GIR',
         data: regArr.moddedGirArr,
         borderColor: 'rgba(10, 100, 20, 0.8)',
         backgroundColor: 'rgba(10, 100, 20, 0.8)',
         yAxisID: 'y',
         borderWidth: 1.5,
-        tension: 0.1,
+        tension: 0.3,
       },
       {
-        label: 'Fairways in reg',
+        label: 'FIR',
         data: regArr.moddedFirArr,
         borderColor: 'rgba(10, 10, 180, 0.8)',
         backgroundColor: 'rgba(10, 10, 180, 0.8)',
         yAxisID: 'y',
         borderWidth: 1.5,
-        tension: 0.1,
+        tension: 0.3,
       },
       {
-        label: 'To par',
+        label: 'Net',
         data: chartData.toPar,
         borderColor: 'black',
         backgroundColor: 'black',
         yAxisID: 'y1',
         borderWidth: 1.5,
-        tension: 0.1,
+        tension: 0.3,
+      },
+    ],
+  }
+
+  const secondaryData = {
+    labels,
+    datasets: [
+      {
+        label: 'Putts',
+        data: puttArr,
+        borderColor: 'rgba(175, 10, 10, 0.8)',
+        backgroundColor: 'rgba(175, 10, 10, 0.8)',
+        yAxisID: 'y',
+        borderWidth: 1.5,
+        tension: 0.3,
+      },
+      {
+        label: 'GIR',
+        data: regArr.moddedGirArr,
+        borderColor: 'rgba(10, 100, 20, 0.8)',
+        backgroundColor: 'rgba(10, 100, 20, 0.8)',
+        yAxisID: 'y',
+        borderWidth: 1.5,
+        tension: 0.3,
+        hidden: true,
+      },
+      {
+        label: 'FIR',
+        data: regArr.moddedFirArr,
+        borderColor: 'rgba(10, 10, 180, 0.8)',
+        backgroundColor: 'rgba(10, 10, 180, 0.8)',
+        yAxisID: 'y',
+        borderWidth: 1.5,
+        tension: 0.3,
+        hidden: true,
+      },
+      {
+        label: 'Net',
+        data: chartData.toPar,
+        borderColor: 'black',
+        backgroundColor: 'black',
+        yAxisID: 'y1',
+        borderWidth: 1.5,
+        tension: 0.3,
       },
     ],
   }
 
   return (
     <div>
-      <Line options={options} data={data} />
+      <div>
+        <Line options={options} data={data} />
+      </div>
+      <div>
+        <Line options={options} data={secondaryData} />
+      </div>
     </div>
   )
 }
