@@ -47,8 +47,16 @@ function LineChart() {
   } as ChartData
 
   allRounds.map((round) => {
+    const roundLength = round.gross.length
+    const adjustedParPerHole = round.parPerHole.slice(0, roundLength)
+    const adjustedPar = adjustedParPerHole.reduce((total, par) => total + par)
+
     const gross = round.gross.reduce((total, score) => total + score)
-    chartData.toPar.push(gross - round.par)
+    if (roundLength === 9) {
+      chartData.toPar.push((gross - adjustedPar) * 2)
+    } else {
+      chartData.toPar.push(gross - adjustedPar)
+    }
 
     chartData.date.push(round.createdAt)
   })
@@ -62,22 +70,25 @@ function LineChart() {
       },
     },
     scales: {
+      x: {
+        reverse: true,
+      },
       y: {
         title: {
           display: true,
           text: 'statIndex ( % )',
         },
-        min: 20,
-        max: 100,
+        min: 0,
+        suggestedMax: 100,
         position: 'left' as const,
       },
       y1: {
         title: {
           display: true,
-          text: 'to par',
+          text: '18 hole to par',
         },
         min: 0,
-        max: 24,
+        suggestedMax: 24,
         position: 'right' as const,
         grid: {
           drawOnChartArea: false,

@@ -18,8 +18,12 @@ export function statCalculator(roundArray: FERound[]) {
     foursFivesCounter = foursFivesCounter + foursFives
     const greenHoles = round.gir.filter((gir) => gir === true).length
     greensCounter = greensCounter + greenHoles
+
     const totalGross = round.gross.reduce((total, score) => total + score)
-    const toPar = totalGross - round.par
+    const adjustedParPerHole = round.parPerHole.slice(0, round.gross.length)
+    const adjustedPar = adjustedParPerHole.reduce((total, par) => total + par)
+
+    const toPar = totalGross - adjustedPar
     toParArr.push(toPar)
   })
 
@@ -30,9 +34,7 @@ export function statCalculator(roundArray: FERound[]) {
     totalParFourFive: foursFivesCounter,
     totalGreens: greensCounter,
     toPar: Number(
-      (
-        toParArr.reduce((total, gross) => total + gross) / roundArray.length
-      ).toFixed(2)
+      toParArr.reduce((total, gross) => total + gross) / holeCounter
     ),
   }
 }
@@ -45,8 +47,10 @@ export function perParStats(roundArray: FERound[], par: number) {
   const grossArray = [] as number[]
   const firArray = [] as boolean[]
   const puttArray = [] as number[]
+
   roundArray.map((round) => {
-    round.parPerHole.map((hole, idx) => {
+    const adjustedParPerHole = round.parPerHole.slice(0, round.gross.length)
+    adjustedParPerHole.map((hole, idx) => {
       if (hole === par) {
         girArray.push(round.gir[idx])
         grossArray.push(round.gross[idx])

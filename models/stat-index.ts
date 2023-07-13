@@ -52,12 +52,15 @@ export function regIndexPerRound(regArr: FERound[]) {
 
   regArr.map((round) => {
     // calculate gir
+    const roundLength = round.gross.length
+    const adjustedParPerHole = round.parPerHole.slice(0, roundLength)
+
     const gir =
       round.gir.filter((gir) => gir === true).length / round.gir.length
 
     // calculate fir
     const fairwayHoles = round.fir.filter((fir) => fir === true).length
-    const parFoursFives = round.parPerHole.filter((hole) => hole >= 4).length
+    const parFoursFives = adjustedParPerHole.filter((hole) => hole >= 4).length
     const fir = fairwayHoles / parFoursFives
 
     // calculate slope modifier
