@@ -9,6 +9,7 @@ import {
   Legend,
 } from 'chart.js'
 import { Line } from 'react-chartjs-2'
+
 import { useLocation } from 'react-router-dom'
 import { FERound } from '../../models/types'
 import * as indexFuncs from '../../models/stat-index'
@@ -65,7 +66,7 @@ function LineChart() {
     responsive: true,
     plugins: {
       title: {
-        display: true,
+        display: false,
         text: 'Round by round stats - statIndex value',
       },
     },
@@ -188,11 +189,11 @@ function LineChart() {
   }
 
   return (
-    <div>
-      <div>
+    <div className="chart-container">
+      <div className="line-charts">
         <Line options={options} data={data} />
       </div>
-      <div>
+      <div className="line-charts">
         <Line options={options} data={secondaryData} />
       </div>
     </div>

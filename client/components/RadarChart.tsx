@@ -65,7 +65,11 @@ function RadarChart() {
     },
   }
 
-  return <Radar data={data} options={options} />
+  return (
+    <div className="radar-chart-container">
+      <Radar data={data} options={options} />
+    </div>
+  )
 }
 
 export default RadarChart
